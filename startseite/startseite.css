@@ -1,0 +1,62 @@
+/*
+
+*{
+
+
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+
+}
+
+nav{
+    display: flex; /*damit es nebeneinander ist*
+    justify-content: space-around; /* auseinander*
+    align-items: center;
+    min-height: 7vh;
+    background-color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.logo{
+    color: #221D23; /* schrift farbe*
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 15px;
+   /* padding: 10px 20px 5px 7px;*
+    margin-left: -22%;
+    height: 50px;
+
+
+}
+ul{
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+    margin-right: -22%;
+
+}
+
+a{
+    color: #221D23;
+    text-decoration:none;
+    letter-spacing: 2px;
+    font-size: 15px;
+
+
+
+}
+
+li{
+    list-style: none;
+
+}
+
+#ones{
+    height: 55px;
+}
+
+img {
+   /* height: 50px;*
+}*/
