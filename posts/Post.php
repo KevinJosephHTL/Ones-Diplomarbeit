@@ -248,11 +248,9 @@ class Post
                             <div id='post_body'>
                                 $body
                                 <br>
-                                <br>
                             <div id='pics' style='width: 200%;max-width: 200%;height: auto; display: block;margin: 5px auto;'>   
                                 $imageDiv
                                 </div> 
-                                <br>
                             </div>
                         </div>
 							<hr>";

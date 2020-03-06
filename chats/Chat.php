@@ -20,7 +20,7 @@ class Chat
                 SQL - Eigener Anmeldeuser & anderer Chatuser
          ***********************************************************/
 
-        $query = mysqli_query($this->con, "SELECT user_to, user_from FROM messages WHERE user_to='$userLoggedIn' OR user_from='$userLoggedIn' ORDER BY id DESC LIMIT 5");
+        $query = mysqli_query($this->con, "SELECT user_to, user_from FROM messages WHERE user_to='$userLoggedIn' OR user_from='$userLoggedIn' ORDER BY id DESC LIMIT 1");
 
         if(mysqli_num_rows($query) == 0)
             return false;
@@ -39,17 +39,26 @@ class Chat
     public function sendMessage($user_to, $body, $date) {
         if($body != "") {
             $userLoggedIn = $this->user_obj->getUsername();
+
+            /***********************************************************
+                SQL - Nachricht wird in die DB gespeichert
+             ***********************************************************/
+
             $query = mysqli_query($this->con, "INSERT INTO messages VALUES('', '$user_to', '$userLoggedIn', '$body', '$date')");
         }
-
     }
 
     //Funktion für das Bekommen von Chatnachrichten
     public function getMessages($otherUser) {
         $userLoggedIn = $this->user_obj->getUsername();
         $data = "";
-        $get_messages_query = mysqli_query($this->con, "SELECT * FROM messages WHERE ((user_to='$userLoggedIn' AND user_from='$otherUser') OR (user_from='$userLoggedIn' AND user_to='$otherUser')) ORDER BY date DESC");
 
+        /***********************************************************
+        SQL - Der Chatverlauf des angemeldeten Benutzers wird ausgewählt
+         ***********************************************************/
+
+        $get_messages_query = mysqli_query($this->con, "SELECT * FROM messages WHERE ((user_to='$userLoggedIn' AND user_from='$otherUser') OR (user_from='$userLoggedIn' AND user_to='$otherUser'))");
+//ORDER BY date_con DESC
         while($row = mysqli_fetch_array($get_messages_query)) {
             $user_to = $row['user_to'];
             $user_from = $row['user_from'];
@@ -57,7 +66,7 @@ class Chat
             $id = $row['id'];
 
             /***********************************************************
-                    CSS,HTML - Textblöcke (blau & grün) m Chatverlauf
+                    CSS,HTML - Textblöcke (blau & grün) im Chatverlauf
              ***********************************************************/
 
             $div_top = ($user_to == $userLoggedIn) ? "<div class='message' id='green'>" : "<div class='message' id='blue'>";
@@ -73,14 +82,15 @@ class Chat
         /***********************************************************
                     SQL - Alle Chatnachrichten
          ***********************************************************/
-        $query = mysqli_query($this->con, "SELECT body, user_to, date FROM messages WHERE (user_to='$userLoggedIn' AND user_from='$user2') OR (user_to='$user2' AND user_from='$userLoggedIn') ORDER BY id DESC LIMIT 1");
-
+        $query = mysqli_query($this->con, "SELECT body, user_to, date_con FROM messages WHERE (user_to='$userLoggedIn' AND user_from='$user2') OR (user_to='$user2' AND user_from='$userLoggedIn') ORDER BY id DESC LIMIT 1");
+//, date
         $row = mysqli_fetch_array($query);
         $sent_by = ($row['user_to'] == $userLoggedIn) ? "Sie sagten: " : "Du sagtest: ";
 
         //Zeitframe
         $date_time_now = date("Y-m-d H:i:s");
-        $start_date = new DateTime($row['date']); //Zeitpunkt des Posts
+        $start_date = new DateTime($row['date_con']); //Zeitpunkt des Posts
+        //$row['date']
         $end_date = new DateTime($date_time_now); //Aktuelle Zeit
         $interval = $start_date->diff($end_date); //Interval der Zeitpunkte
         if($interval->y >= 1) {
@@ -91,7 +101,7 @@ class Chat
         }
         else if ($interval->m >= 1) {
             if($interval->d == 0) {
-                $days = " alt";
+                $days = " Tage alt";
             }
             else if($interval->d == 1) {
                 $days = $interval->d . " Tage alt";
@@ -155,7 +165,7 @@ class Chat
         $convos = array();
 
         /***********************************************************
-                SQL - Alle Chatnachrichten
+                SQL - Alle Chatnachrichten werden ausgewählt
          ***********************************************************/
 
         $query = mysqli_query($this->con, "SELECT user_to, user_from FROM messages WHERE user_to='$userLoggedIn' OR user_from='$userLoggedIn' ORDER BY id DESC");
@@ -167,9 +177,12 @@ class Chat
                 array_push($convos, $user_to_push);
             }
         }
-
+        $names = implode(" ", $convos);
+        //echo "$names";
         foreach($convos as $username) {
             $user_found_obj = new User($this->con, $username);
+           // $names2 = implode(" ", $user_found_obj);
+            //echo "$names2";
             $latest_message_details = $this->getLatestMessage($userLoggedIn, $username);
 
             $dots = (strlen($latest_message_details[1]) >= 12) ? "..." : "";
@@ -180,7 +193,7 @@ class Chat
                         CSS,HTML - Ausgabefeld des Suchbalkens
              ***********************************************************/
 
-            $return_string = "<a href='chats.php?u=$username'> <div class='user_found_messages'>
+            $return_string .= "<a href='chats.php?u=$username'> <div class='user_found_messages'>
 								" . $user_found_obj->getName() . "
 								<span class='timestamp_smaller' id='grey'> " . $latest_message_details[2] . "</span>
 								<p id='grey' style='margin: 0;'>" . $latest_message_details[0] . $split . " </p>
@@ -192,7 +205,7 @@ class Chat
 
     }
 
-    public function getConvosDropdown($data, $limit) {
+   /* public function getConvosDropdown($data, $limit) {
 
 
         $userLoggedIn = $this->user_obj->getUsername();
@@ -200,8 +213,8 @@ class Chat
         $convos = array();
 
         /***********************************************************
-                SQL - Alle Chatnachrichten
-         ***********************************************************/
+                SQL - Alle Chatnachrichten werden ausgewählt
+         ***********************************************************//*
         $query = mysqli_query($this->con, "SELECT user_to, user_from FROM messages WHERE user_to='$userLoggedIn' OR user_from='$userLoggedIn' ORDER BY id DESC");
 
         while($row = mysqli_fetch_array($query)) {
@@ -224,8 +237,8 @@ class Chat
             $split = $split[0] . $dots;
 
             /***********************************************************
-                    CSS,HTML - Konversationsfeld
-            ***********************************************************/
+        CSS,HTML - Die kürzlich angesprochenen Personen im Konversationsfeld
+            ***********************************************************//*
 
             $return_string .= "<a href='chats.php?u=$username'> 
                                     <div class='user_found_messages' >
@@ -235,6 +248,6 @@ class Chat
                                     </div>
 								</a>";
         }
-    }
+    }*/
 }
 

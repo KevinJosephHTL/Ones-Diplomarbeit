@@ -23,7 +23,7 @@ if($query != "") {
 		$user = new User($con, $userLoggedIn);
 
         /***********************************************************
-                CSS,HTML - Ausgabefeld des Suchbalkens
+                CSS,HTML - Ausgabefeld des Suchbalkens!!!!!!!!!!
          ***********************************************************/
 
         if($user->justTrue($row['username'])) {

@@ -232,24 +232,21 @@ if(isset($_POST['postsss3'])){
         <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://malsup.github.io/jquery.form.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="posts.js"></script>
 
-        <meta charset="utf-8">
+        <!-- Required meta tags -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+        <!--script src="https://malsup.github.io/jquery.form.js"></script-->
     </head>
     <body>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-
 
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <a class="navbar-brand" href="../index.php"> <img src="../Bilder/Ones_Logo_noback.png" id="ones" width="55" height="30" alt=""></a>
+        <a class="navbar-brand" href="../index.php"> <img src="../Bilder/Ones_Logo_noback_NEU.png" id="ones" width="55" height="45" alt=""></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -257,24 +254,21 @@ if(isset($_POST['postsss3'])){
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent" >
 
-            <ul class="navbar-nav mr-auto"  >
+            <ul class="navbar-nav ml-auto" >
                 <li class="nav-item ">
-                    <a class="nav-link" href="../startseite/startseite.php">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" style="margin-right:40px;" href="../startseite/startseite.php">Home <span class="sr-only">(current)</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="posts.php">Posts</a>
+                    <a class="nav-link" style="margin-right:40px;" href="posts.php">Posts</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="../chats/chats.php">Chats</a>
+                    <a class="nav-link" style="margin-right:40px;" href="../chats/chats.php">Chats</a>
                 </li>
-
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                    </a>
+                    <a class="nav-link dropdown-toggle" style="margin-right:40px;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="../info/info.php" >Info</a>
                         <div class="dropdown-divider"></div>
@@ -283,27 +277,21 @@ if(isset($_POST['postsss3'])){
                 </li>
 
             </ul>
-
-            <div class="message_post">
-                <form action="" method="POST">
-
-                <input class="form-control mr-sm-2" id='search_text_input' name='q' type="text" autocomplete='off' onkeyup='getUsers(this.value, "<?php echo $userLoggedIn; ?>")' placeholder="Search" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0" action="" method="POST">
+                <input class="form-control mr-sm-2" id='search_text_input' name='q' type="search" autocomplete='off' onkeyup='getUsers(this.value, "<?php echo $userLoggedIn; ?>")' placeholder="Search" aria-label="Search">
                 <?php
                 /***********************************************************
                         HTML,CSS - Ausgabefeld für den Suchbalken
                  ***********************************************************/
                 echo "<div class='results' class=\"form-inline my-2 my-lg-0\" style='position: absolute;background-color: white;'></div>";
                 ?>
-
                 </form>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </div>
+        </div>
+
 
     </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
+
 
 
         <div class="flex-container">
@@ -315,8 +303,8 @@ if(isset($_POST['postsss3'])){
                     <br>
                     <div id="first">
                         <form action="posts.php" method="POST">
-                            <a class="btn btn-success" href="#" id="signup" class="signup" >Forum starten</a>
-                            <br><br>
+                            <a href="#" id="signup" class="signup" >Forum starten</a>
+                            <br>
                             <img src="../Bilder/hu.png" class="pics">
                             <br>
                             <br>
@@ -333,8 +321,8 @@ if(isset($_POST['postsss3'])){
                     <br>
                     <div id="first2">
                         <form action="posts.php" method="POST">
-                            <a class="btn btn-success" href="#" id="signup2" class="signup2" >Forum starten</a>
-                            <br><br>
+                            <a  href="#" id="signup2" class="signup2" >Forum starten</a>
+                            <br>
                             <img src="../Bilder/bulb.png" class="pics">
                             <br>
                             <br>
@@ -351,8 +339,7 @@ if(isset($_POST['postsss3'])){
                     <br>
                     <div id="first3">
                         <form action="posts.php" method="POST">
-                            <a class="btn btn-success" href="#" id="signup3" class="signup3" >Forum starten</a>
-                            <br>
+                            <a href="#" id="signup3" class="signup3" >Forum starten</a>
                             <br>
                             <img src="../Bilder/sports.png" class="pics">
                             <br>
@@ -362,12 +349,6 @@ if(isset($_POST['postsss3'])){
                 </div>
             </div>
         </div>
-            </div>
-
-
-
-
-
 
         <div id="second">
         <div id="content0-1">
@@ -527,9 +508,7 @@ if(isset($_POST['postsss3'])){
                 </div>
                 <br>
                 <br>
+        </div>
 
-        </div>
-        </div>
-    </div>
     </body>
 </html>

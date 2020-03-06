@@ -3,6 +3,7 @@ $(document).ready(function() {
 	var request;
 	setInterval(function(){ $(".passt").load(location.href + " .passt"); }, 3000);
 
+
 	$(".passt").submit(function(event){
 		event.preventDefault();
 		if (request) {
@@ -36,9 +37,56 @@ $(document).ready(function() {
 			$inputs.prop("disabled", false);
 		});
 	});
-//////////////////////////////////////////////////////////////////////////////////
+
+
+	//setInterval(function(){ $(".loaded_conversations").load(location.href + " .loaded_conversations"); }, 3000);
+
+//Funktion zum Finden von anderen Usern
+
+		$.post("../chats/ajax_chats.php", {query:value, userLoggedIn:user}, function(data) {
+			$(".results").html(data);
+		});
+
+/////
+	$(".loaded_conversations").submit(function(event){
+		event.preventDefault();
+		if (request) {
+			request.abort();
+		}
+		var $form = $(this);
+		var $inputs = $form.find("textarea");
+		var serializedData = $form.serialize();
+		$inputs.prop("disabled", true);
+		request = $.ajax({
+			url: "/ones/chats/ajax_load_messages.php",
+			type: "POST",
+			data: serializedData
+		});
+
+		request.done(function (response, textStatus, jqXHR){
+
+			$(".loaded_conversations").load(location.href + ".loaded_conversations");
+
+		});
+
+		request.fail(function (jqXHR, textStatus, errorThrown){
+			// Log the error to the console
+			console.error(
+				"The following error occurred: "+
+				textStatus, errorThrown
+			);
+		});
+		request.always(function () {
+			// Reenable the inputs
+			$inputs.prop("disabled", false);
+		});
+	});
+//////
+
 
 });
+
+
 //Funktion zum löschen von Nachrichten
 function deleteMessage(messageId, element) {
 	$.post("includes/handlers/ajax_delete_message.php", {id:messageId}, function(data) {
@@ -52,6 +100,17 @@ function getUsers(value, user) {
 		$(".results").html(data);
 	});
 }
+
+
+//Funktion zum Finden von anderen Usern
+function getConvos() {
+
+
+	$.post("ajax_chats.php", {query:value, userLoggedIn:user}, function(data) {
+		$(".results").html(data);
+	});
+}
+
 
 //Alle aktuell gefundenen Usern
 function getLiveSearchUsers(value, user) {
@@ -73,6 +132,10 @@ function getLiveSearchUsers(value, user) {
 		}
 	});
 }
+
+
+
+
 
 
 

@@ -50,24 +50,25 @@ if(isset($_POST['post_message'])) {
     </head>
     <body>
 
+    <div class="sticky-top">
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <a class="navbar-brand" href="../index.php"> <img src="../Bilder/Ones_Logo_noback.png" id="ones" width="55" height="30" alt=""></a>
+        <a class="navbar-brand" href="../index.php"> <img src="../Bilder/Ones_Logo_noback_NEU.png" width="55" height="45" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="../startseite/startseite.php">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" style="margin-right:40px;" href="../startseite/startseite.php">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../posts/posts.php">Posts</a>
+                    <a class="nav-link" style="margin-right:40px;" href="../posts/posts.php">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="chats.php">Chats</a>
+                    <a class="nav-link"  style="margin-right:40px;" href="chats.php">Chats</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                    <a class="nav-link dropdown-toggle" style="margin-right:40px;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="../info/info.php" >Info</a>
                         <div class="dropdown-divider"></div>
@@ -76,8 +77,8 @@ if(isset($_POST['post_message'])) {
                 </li>
             </ul>
             <div class="message_post">
-            <form action="" method="POST">
-                <input class="form-control mr-sm-2" id='search_text_input' name='q' type="text" autocomplete='off' onkeyup='getUsers(this.value, "<?php echo $userLoggedIn; ?>")' placeholder="Search" aria-label="Search">
+            <form action="" method="POST" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2"  name='q' type="search" autocomplete='off' onkeyup='getUsers(this.value, "<?php echo $userLoggedIn; ?>")' placeholder="Search" aria-label="Search">
                 <?php
                 /***********************************************************
                         CSS,HTML - Ausgabefeld des Suchbalkens
@@ -87,8 +88,20 @@ if(isset($_POST['post_message'])) {
             </form>
             </div>
         </div>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Suchen</button>
-    </nav>
+     </nav>
+    </div>
+
+    <div class="col-12">
+        <h1 style="font-family:'Poppins', sans-serif; font-size:100px; font-weight: bold;">
+            Chat
+        </h1>
+
+        <p style="font-family:'Poppins', sans-serif; font-size:20px;" >
+            Kommuniziere mit deinen Mitschülern
+        </p>
+
+    </div>
+
     <div class="main_column column" id="main_column">
     <?php
 
@@ -107,9 +120,9 @@ if(isset($_POST['post_message'])) {
                 ?> </div><?php
                 echo "</div>";
             } else {
-                echo "<h4>Suche Chatpartner</h4>";
+                echo "<h4>Suche Chatpartner</h4><br>";
             }
-    ?>
+            ?>
             <div class="message_post">
                 <form action="" method="POST">
                     <?php
@@ -120,10 +133,13 @@ if(isset($_POST['post_message'])) {
                         /***********************************************************
                                 CSS,HTML - Eigener Suchbalkens
                          ***********************************************************/
-                        echo "Suchen Sie eine Person aus mit der Sie chatten möchten <br><br>";?>
-                        Chat mit: <input type='text' onkeyup='getUsers(this.value, "<?php echo $userLoggedIn; ?>")' name='q' placeholder='Name' autocomplete='off' id='seach_text_input'>
+                        echo "Suchen Sie eine Person aus mit der Sie chatten möchten <br>Finde deine Chatperson durch die Eingabe des Benutzernamens im Suchfeld<br>";?>
+
+
+
+                        <!--Chat mit: <input type='text' onkeyup='getUsers(this.value, "<?php //echo $userLoggedIn; ?>")' name='q' placeholder='Name' autocomplete='off' id='seach_text_input'-->
                         <?php
-                        echo "<div class='results'></div>";
+                       // echo "<div class='results'></div>";
                     }
                     //Das TextFeld, um mit der Person zu schreiben
                     //und das SendeButton
@@ -147,7 +163,8 @@ if(isset($_POST['post_message'])) {
             <div class="loaded_conversations">
                 <?php
                 //Konversationsfeld
-                echo $message_obj->getConvos(); ?>
+                echo $message_obj->getConvos();
+                ?>
             </div>
             <br>
         </div>

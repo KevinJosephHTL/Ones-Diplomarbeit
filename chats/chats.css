@@ -4,21 +4,6 @@
 
 
 
-
-body {
-    line-height: 17px;
-    background-color: #E6EAE8;
-}
-
-#ones{
-    height: 55px;
-}
-
-a {
-    color: #20AAE5;
-    text-decoration: none;
-}
-
 .top_bar {
     width: 100%;
     min-width: 1050px;
@@ -30,13 +15,6 @@ a {
     position: fixed;
     z-index: 10;
 }
-
-
-a:hover {
-    text-decoration: none;
-}
-
-
 
 
 .wrapper {
@@ -237,24 +215,6 @@ textarea:focus {
     word-wrap: break-word;
 }
 
-.danger {
-    background-color: #e74c3c;
-}
-.warning {
-    background-color: #f0ad4e;
-}
-.default {
-    background-color: #bdc3c7;
-}
-.success {
-    background-color: #2ecc71;
-}
-.info {
-    background-color: #3498db;
-}
-.deep_blue {
-    background-color: #0043f0;
-}
 
 .profile_left input[type="submit"] {
     width: 90%;
@@ -302,10 +262,8 @@ textarea:focus {
 
 }
 
-.profile_info_bottom {
-   /* margin: 10 0 0 7px;*/
 
-}
+
 
 #message_textarea {
     width: 80%;
@@ -358,8 +316,8 @@ textarea:focus {
 
 .loaded_conversations {
 /* max-height: 216px;*/
-    overflow-y: scroll;
-    overflow-x: hidden;
+ /*   overflow-y: scroll;
+    overflow-x: hidden;*/
 }
 
 .user_found_messages {
@@ -380,18 +338,8 @@ textarea:focus {
     color: #8C8C8C;
 }
 
-.resultDisplay {
-    padding: 5px 5px 0 5px;
-    height: 70px;
-    border-bottom: 1px solid #D3D3D3;
-}
-.resultDisplay a {
-    float: none;
-}
-.resultDisplay:hover {
-    background-color: #EBEBEB;
-    text-decoration: none;
-}
+
+/*
 .liveSearchProfilePic img {
     height: 50px;
     border-radius: 25px;
@@ -408,39 +356,14 @@ textarea:focus {
     margin-left: 10px;
     font-size: 12px;
 }
-
+*/
 .tab-content {
     margin-top: 25px;
 }
 
-.dropdown_data_window {
-    background-color: #fff;
-    border: 1px solid #DADADA;
-    border-radius: 0 0 8px 8px;
-    border-top: none;
-    width: 300px;
-    position: absolute;
-    right: 10px;
-    top: 40px;
-    overflow: scroll;
-}
 
-.notification_badge {
-    padding: 3px 7px;
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    background-color: #F00;
-    border-radius: 10px;
-    position: absolute;
-    left: 8px;
-    top: -5px;
-}
 
+/*
 .resultDisplayNotification {
     height: auto;
     color: #1485BD;
@@ -457,8 +380,8 @@ textarea:focus {
 .timestamp_smaller {
     font-size: 85%;
     margin: 0;
-}
-
+}*/
+/*
 .search {
     margin: 8px 0 0 15%;
 }
@@ -537,7 +460,7 @@ textarea:focus {
 #search_hr {
     margin-bottom: 0px;
 }
-
+*/
 .small_profile_pic {
     height: 55px;
     margin: 1px 12px 0 2px;
@@ -583,56 +506,5 @@ textarea:focus {
 
 
 
-/*WHAHHDHUASDHASDBKJABSJDAS*/
-*{
 
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-
-}
-
-nav{
-    display: flex; /*damit es nebeneinander ist*/
-    justify-content: space-around; /* auseinander*/
-    align-items: center;
-    min-height: 7vh;
-    background-color: #FFFFFF;
-    font-family: 'Poppins', sans-serif;
-
-}
-
-.logo{
-    color: #221D23; /* schrift farbe*/
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 15px;
-    /* padding: 10px 20px 5px 7px;*/
-    margin-left: -22%;
-
-
-
-}
-ul{
-    display: flex;
-    justify-content: space-around;
-    width: 30%;
-    margin-right: -22%;
-
-}
-
-a{
-  /*  color: #221D23;
-    text-decoration:none;
-    letter-spacing: 2px;
-    font-size: 15px;*/
-
-
-
-}
-
-li{
-    list-style: none;
-
-}
 
